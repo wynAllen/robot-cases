@@ -9,7 +9,7 @@ ${test_url}      http://blog-test.dblace.com/blog/index/
 *** Test Cases ***
 api-dev
     [Tags]  critical-dev
-    Create Session    api-dev    ${demo_url}
+    Create Session    api-dev    ${test_url}
     ${alarm_system_info}    RequestsLibrary.Get Request    api    /
     log    ${alarm_system_info.status_code}
     log    ${alarm_system_info.content}
@@ -23,7 +23,7 @@ ui-dev
     Call Method    ${chrome_options}   add_argument    headless
     Call Method    ${chrome_options}   add_argument    no-sandbox
     ${options}=     Call Method     ${chrome_options}    to_capabilities
-    Open Browser    ${demo_url}/    browser=chrome       desired_capabilities=${options}
+    Open Browser    ${test_url}/    browser=chrome       desired_capabilities=${options}
     sleep    2s
     Capture Page Screenshot
     Page Should Contain    Django
