@@ -26,7 +26,7 @@ ui
     Open Browser    ${test_url}/    browser=chrome       desired_capabilities=${options}
     sleep    2s
     Capture Page Screenshot
-    Page Should Contain    Django
+    Page Should Contain    我的博客
     close browser
     
    
