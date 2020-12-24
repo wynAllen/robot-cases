@@ -7,22 +7,17 @@ ${demo_url}       http://blog-dev.dblace.com/admin
 ${test_url}      http://blog-test.dblace.com/blog/index/
 
 *** Test Cases ***
-api
+api-dev
     [Tags]  critical-dev
-    Create Session    api    ${demo_url}
+    Create Session    api-dev    ${demo_url}
     ${alarm_system_info}    RequestsLibrary.Get Request    api    /
     log    ${alarm_system_info.status_code}
     log    ${alarm_system_info.content}
     should be true    ${alarm_system_info.status_code} == 200
     
-    [Tags]  critical-test
-    Create Session    api    ${test_url}
-    ${alarm_system_info}    RequestsLibrary.Get Request    api    /
-    log    ${alarm_system_info.status_code}
-    log    ${alarm_system_info.content}
-    should be true    ${alarm_system_info.status_code} == 200
 
-ui
+
+ui-dev
     [Tags]  critical-dev
     ${chrome_options} =     Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
     Call Method    ${chrome_options}   add_argument    headless
@@ -34,13 +29,4 @@ ui
     Page Should Contain    Django
     close browser
     
-    [Tags]  critical-test
-    ${chrome_options} =     Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
-    Call Method    ${chrome_options}   add_argument    headless
-    Call Method    ${chrome_options}   add_argument    no-sandbox
-    ${options}=     Call Method     ${chrome_options}    to_capabilities
-    Open Browser    ${test_url}/    browser=chrome       desired_capabilities=${options}
-    sleep    2s
-    Capture Page Screenshot
-    Page Should Contain    Django
-    close browser
+   
