@@ -3,7 +3,7 @@ Library           RequestsLibrary
 Library           SeleniumLibrary
 
 *** Variables ***
-${demo_url}       http://myblog.1.dblace.com/admin
+${demo_url}       http://blog-dev.dblace.com/admin
 
 *** Test Cases ***
 api
